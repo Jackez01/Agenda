@@ -21,6 +21,19 @@ def editar_contato(contatos, indice_contato, novo_nome_contato):
    print("Índice de tarefa inválido.")
  return
 
+def favoritar_contato(contatos, indice_contato):
+  indice_contato_ajustado = int(indice_contato) - 1 
+  contatos[indice_contato_ajustado] ["Favorito"] = True
+  print(f"Contato {indice_contato} marcado como favorito")
+  return
+
+def deletar_contatos(contatos):
+  for agenda in contatos:
+    if agenda["Favorito"]:
+      contatos.remove(agenda)
+  print("O contato foi deletado")
+  return
+
 contatos = []
 while True:
   print("\n Agenda")
@@ -45,7 +58,17 @@ while True:
     indice_contato = input("Digite o número do contato que deseja atualizar: ")
     novo_nome = input("Digite o novo nome do contato: ")
     editar_contato(contatos, indice_contato, novo_nome)
+
+  elif escolha == "4":
+     ver_contatos(contatos)
+     indice_contato = input("Digite o número da tarefa que deseja completar: ")
+     favoritar_contato(contatos, indice_contato)
+
   elif escolha == "6":
+    deletar_contatos(contatos)
+    ver_contatos(contatos)
+
+  elif escolha == "7":
     break
 
 print("Programa finalizado")
